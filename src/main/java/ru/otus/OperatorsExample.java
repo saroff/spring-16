@@ -24,13 +24,13 @@ public class OperatorsExample {
     public static void simpleExample() throws Exception {
         List<String> words = ImmutableList.of(
                 "the",
-                "quick",
+                "1000.00",
                 "brown",
-                "fox",
+                "2000.5",
                 "jumped",
-                "over",
+                "432.89",
                 "the",
-                "lazy",
+                "800.1",
                 "dog");
         Observable.fromIterable(words)
                 .filter(s -> s.length() >= 4)
