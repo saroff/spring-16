@@ -9,6 +9,7 @@ import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
@@ -22,20 +23,13 @@ public class OperatorsExample {
     }
     
     public static void simpleExample() throws Exception {
-        List<String> words = ImmutableList.of(
-                "the",
-                "1000.00",
-                "brown",
-                "2000.5",
-                "jumped",
-                "432.89",
-                "the",
-                "800.1",
-                "dog");
+        List<Person> words = ImmutableList.of(
+                new Person("John", "Dow", "male", LocalDate.of(1992, 3, 12)),
+                new Person("Jane", "Dow", "female", LocalDate.of(2001, 6, 23)),
+                new Person("Howard", "Lovecraft", "male", LocalDate.of(1890, 8, 20)),
+                new Person("Joanne", "Rowling", "female", LocalDate.of(1965, 6, 31)));
         Observable.fromIterable(words)
-                .filter(s -> s.length() >= 4)
-                .map(String::toUpperCase)
-                .flatMap(s -> Observable.fromArray(s.split("")))
+                .map(p -> p.getFirstName() + " " + p.getLastName())
                 .toList()
                 .subscribe(System.out::println);
     }

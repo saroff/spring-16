@@ -9,7 +9,8 @@ public class AsyncComparison {
     
     public static void main(String[] args) throws IOException {
         final long timeStarted = System.currentTimeMillis();
-        System.out.println(controller().subscribe(System.out::println));
+        final Observable<String> obs = controller();
+        obs.subscribe(System.out::println);
         System.out.println("Wait time " + (System.currentTimeMillis() - timeStarted));
         System.in.read();
     }
